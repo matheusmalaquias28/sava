@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@theme {
+  /* Neutros quentes (base clara, editorial) */
+  --color-paper: #f4f2ee;
+  --color-sand: #ebe8e2;
+  --color-stone: #dcd8d0;
+  --color-ink: #0f1626;
+  --color-muted: #5d6372;
+
+  /* Marca */
+  --color-navy: #223971;
+  --color-navy-deep: #0d1733;
+  --color-copper: #bf8055;
+  --color-copper-dark: #a56a42;
+  --color-copper-light: #dcab84;
+  --color-copper-soft: #f1e3d6;
+
+  --font-brand: var(--font-revans), Georgia, serif;
+
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
+  --font-head: var(--font-gotham), var(--font-montserrat), sans-serif;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  @keyframes float {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    50% { transform: translate3d(0, -16px, 0) rotate(1.5deg); }
+  }
+  @keyframes marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-navy);
+  color: #fff;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+@utility container-x {
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Rótulo de seção: pequeno losango cobre + texto */
+@utility label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-head);
+  color: var(--color-copper-dark);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+
+@utility glass-dark {
+  background: rgb(13 23 51 / 0.32);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+@utility glass-light {
+  background: rgb(244 242 238 / 0.78);
+  border: 1px solid rgb(15 22 38 / 0.08);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+/* Revelação sutil por scroll */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Campos de formulário */
+.field {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--color-stone);
+  border-radius: 12px;
+  padding: 0.95rem 1rem;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.field:focus {
+  outline: none;
+  border-color: var(--color-navy);
+  box-shadow: 0 0 0 3px rgb(34 57 113 / 0.12);
+}
+.field::placeholder {
+  color: #8a8f9a;
+}
+
+@keyframes consent-in {
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+/* Google Tradutor (botão PT/EN): esconde a barra e os balões do Google */
+.goog-te-banner-frame,
+.skiptranslate > iframe,
+iframe.VIpgJd-ZVi9od-ORHb-OEVmcd,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-yAWNEb-L7lbkb {
+  display: none !important;
+}
+body {
+  top: 0 !important;
+}
+.goog-text-highlight,
+font[style] {
+  background: none !important;
+  box-shadow: none !important;
+}
